@@ -12,6 +12,16 @@ httpServer.on("request", (req, res) => {
         return;
     }
 
+    if(req.url === "/upload") {
+        const fileName = req.headers["file-name"];
+
+        req.on("data", chunk => {
+            fs.appendFileSync(fileName, chunk);
+        });
+
+        res.end("uploaded");
+    }
+
 });
 
 httpServer.listen(8080);
