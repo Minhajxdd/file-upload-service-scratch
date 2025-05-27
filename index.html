@@ -43,10 +43,11 @@
               headers: {
                 "content-type": "application/octet-stream",
                 "content-length": chunk.length,
-                "file-name": fileName
+                "file-name": fileName,
               },
               body: chunk,
             });
+            divOutput.textContent = Math.round(chunkId * 100 / chunkCount);
           }
 
           console.log(ev.target.result.byteLength);
